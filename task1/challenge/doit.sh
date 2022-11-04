@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rm -rf obj_dir
-rm -f counter.vcd
+rm -f *.vcd
 
 verilator -Wall --cc --trace lfsr.sv --exe lfsr_tb.cpp
 
