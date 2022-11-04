@@ -1,12 +1,14 @@
 #!/bin/sh
 
+top=lfsr
+
 rm -rf obj_dir
 rm -f *.vcd
 
-verilator -Wall --cc --trace lfsr.sv --exe lfsr_tb.cpp
+verilator --top-module ${top} -Wall --cc --trace *.sv --exe ${top}_tb.cpp
 
-make -j -C obj_dir/ -f Vlfsr.mk Vlfsr
+make -j15 -C obj_dir/ -f V${top}.mk
 
 ls /dev/ttyUSB* > vbuddy.cfg
 
-./obj_dir/Vlfsr
+./obj_dir/V${top}
